@@ -228,7 +228,7 @@ public class GuiCreator {
         switch (card) {
             case 1: //Werewolf
                 if (modifier.equals("none")) {
-                    mainTxt.setText(mainTxt + "you are alone, choose a middle card to view");
+                    mainTxt.setText(mainTxt.getText() + "you are alone, choose a middle card to view");
                     grid.add(mainTxt, 0, 0, 3, 1);
                     Button left = new Button("Left");
                     Button middle = new Button("Middle");
@@ -250,7 +250,7 @@ public class GuiCreator {
                         text.setText(modifier.split(",")[1]);
                     } else {
                         text.setText(modifier.split(",")[0]);
-                        mainTxt.setText(mainTxt + "the other werewolf is " + text);
+                        mainTxt.setText(mainTxt.getText() + "the other werewolf is " + text.getText());
                         grid.add(mainTxt, 0, 0);
                     }
                 }
