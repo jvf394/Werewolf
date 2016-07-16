@@ -49,7 +49,7 @@ public class WerewolfClient extends Application {
         System.out.println("Card and Name: " + tempString);
         Player me = new Player("",-1,-1,null,-1);
         me.setCard(Integer.parseInt(tempString.split(",")[0]));
-        me.setOrigCard();Card(Integer.parseInt(tempString.split(",")[0]));
+        me.setOrigCard(Integer.parseInt(tempString.split(",")[0]));
         System.out.println("me.Card: " + me.getCard());
         me.setName(tempString.split(",")[1]);
         System.out.println("me.Name: " + me.getName());
