@@ -54,6 +54,7 @@ public class WerewolfProtocol {
         Deck = deck;
         for (int i = 0; i < totalPlayers + 3; i++) {
             players[i].setCard(Integer.parseInt(deck.split(",")[i]));
+            players[i].setOrigCard(players[i].getCard());
             System.out.println(players[i].getName() + ": " + players[i].getCard());
         }
         playOrder = players;
