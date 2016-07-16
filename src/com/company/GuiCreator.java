@@ -248,6 +248,7 @@ public class GuiCreator {
                 } else {
                     if (me.getName().equals(modifier.split(",")[0])) {
                         text.setText(modifier.split(",")[1]);
+                        grid.add(mainTxt, 0, 0);
                     } else {
                         text.setText(modifier.split(",")[0]);
                         mainTxt.setText(mainTxt.getText() + "the other werewolf is " + text.getText());
