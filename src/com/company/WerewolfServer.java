@@ -34,13 +34,13 @@ public class WerewolfServer {
             System.out.println("finished accepting first player");
 
             //Accepts the rest of the players
-            for (int i = 0; i < totalPlayers - 1; i++) {
-                acceptPlayers();
+            for (int i = 2; i < totalPlayers+1; i++) {
+                acceptPlayers(i);
             }
             System.out.println("finished accepting all players");
 
             //Brings up character selection for host, and waiting screen for other players
-            wwp.sendMain("1", "0");
+            wwp.characterSelect();
 
             //Receives shuffled deck
             deck = wwp.listenPlayer(3);
@@ -48,7 +48,7 @@ public class WerewolfServer {
             //Deals cards to players
             wwp.dealCards(deck);
             wwp.sortPlayers();
-            wwp.showCard();
+            wwp.showCard(); //sends players their card and name
 
             while(wwp.beginGame()!=9){
             }
@@ -79,13 +79,13 @@ public class WerewolfServer {
         }
     }
 
-    public static void acceptPlayers() throws IOException {
+    public static void acceptPlayers(int playerNumber) throws IOException {
         try {
             Socket clientSocket = serverSocket.accept();
             System.out.println("player accepted");
             out = new PrintWriter(clientSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            out.println("0");
+            out.println(playerNumber);
             inputLine = in.readLine();
             wwp.playerList(inputLine, clientSocket);
         } catch (IOException e) {

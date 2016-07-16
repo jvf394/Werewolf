@@ -25,7 +25,7 @@ public class GuiCreator {
     private static String playerName, name = "";
     private static int numberOfPlayers;
 
-    public static String usernameGui(String isFirst) {
+    public static String usernameGui(int turn) {
         Stage usernameStage = new Stage();
         usernameStage.setAlwaysOnTop(true);
         GridPane grid = new GridPane();
@@ -41,7 +41,7 @@ public class GuiCreator {
         submitBtn.setOnAction(event -> {
             playerName = usernameField.getText();
             numberOfPlayers = Integer.parseInt(numberOfPlayersField.getText());
-            if (isFirst.equals("1")) {
+            if (turn ==1) {
                 if ((playerName != null) && (!playerName.equals(""))) {
                     if ((numberOfPlayers > 1) && (numberOfPlayers < 11)) {
                         name = playerName + "," + numberOfPlayers;
@@ -55,7 +55,7 @@ public class GuiCreator {
         grid.add(usernameTxt, 0, 0);
         grid.add(usernameField, 1, 0);
         usernameStage.setTitle("Client");
-        if (isFirst.equals("1")) {
+        if (turn ==1) {
             usernameStage.setTitle("Host");
             grid.add(numberOfPlayersTxt, 0, 1);
             grid.add(numberOfPlayersField, 1, 1);

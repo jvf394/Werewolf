@@ -60,13 +60,10 @@ public class WerewolfProtocol {
         return totalPlayers;
     }
 
-    public void sendMain(String main, String rest) throws IOException {
-        for (int i = 3; i < totalPlayers + 3; i++) {
-            Socket skt = players[i].getConnection();
+    public void characterSelect() throws IOException {
+            Socket skt = players[3].getConnection();
             PrintWriter out = new PrintWriter(skt.getOutputStream(), true);
-            if (i == 3) out.println(main);
-            else out.println(rest);
-        }
+            out.println();
     }
 
     public String listenPlayer(int playerNum) throws IOException {
