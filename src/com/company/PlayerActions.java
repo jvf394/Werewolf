@@ -17,6 +17,7 @@ public class PlayerActions {
         boolean isSecondWolf = false;
         for (Player p : playOrder) {
             if (p.getOrigCard() == 2 && !wwp.isCenterCard(p)) {
+                System.out.println("you are a lone wolf");
                 isSecondWolf = true;
                 wwp.tellEveryone("1",player.getName()+","+p.getName());
                 try {
