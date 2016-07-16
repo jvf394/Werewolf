@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -208,17 +209,49 @@ public class GuiCreator {
         showCardStage.showAndWait();
     }
 
-    public void takeTurnGui(int card) throws InterruptedException{
+    public String takeTurnGui(String info,Player me) throws InterruptedException{
+        int card = Integer.parseInt((info.split(",")[0]));
+        String modifier = info.split(",")[1];
+        Text feedBack=new Text("");
         Stage takeTurnStage = new Stage();
         takeTurnStage.setAlwaysOnTop(true);
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
-        Button btn = new Button();
-        Image cardImg = new Image(card + ".png", 100, 548, true, true);
+        Image cardImg = new Image(card + ".png", 50, 274, true, true);
         ImageView cardView = new ImageView(cardImg);
+        Text mainTxt = new Text(me.getName()+", ");
+        Text text = new Text();
         switch (card){
+            case 1: //Werewolf
+                if (modifier.equals("none")){
+                    mainTxt.equals(mainTxt+"you are alone, choose a middle card to view");
+                    grid.add(mainTxt,0,0,3,1);
+                    Button left = new Button ("Left");
+                    Button middle = new Button ("Middle");
+                    Button right = new Button ("Right");
+                    grid.add(left,0,1);
+                    grid.add(middle,1,1);
+                    grid.add(right,2,1);
+                    left.setOnAction(event -> {
+                        feedBack.equals("0");
+                    });
+                    middle.setOnAction(event -> {
+                        feedBack.equals("1");
+                    });
+                    right.setOnAction(event -> {
+                        feedBack.equals("2");
+                    });
+                } else{
+                    if (me.getName().equals(modifier.split(",")[0])){
+                        text.equals(modifier.split(",")[1]);
+                    }else text.equals(modifier.split(",")[0]);
+                    mainTxt.equals(mainTxt+"the other werewolf is "+ text);
+                    grid.add(mainTxt,0,0);
+                }
+                return feedBack.getText();
+
             //seer
             case 6:
                 grid.add(cardView, 0, 1);
@@ -243,6 +276,7 @@ public class GuiCreator {
         Scene showCardScene = new Scene(grid);
         takeTurnStage.setScene(showCardScene);
         takeTurnStage.showAndWait();
+        return null;
     }
 
     public void updateCardGui() {

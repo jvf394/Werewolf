@@ -58,7 +58,19 @@ public class WerewolfClient extends Application {
         }
 
         //Shows players their original card
-        me.setOrigCard(Integer.parseInt(in.readLine())); //Receives Original Card
+        me.setOrigCard(Integer.parseInt(in.readLine()));//Receives Original Card
+        //Makes both werewolves respond to a 1
+        if (me.getOrigCard() == 2) {
+            me.setOrigCard(1);
+        }
+        //Makes both masons respond to a 4
+        if (me.getOrigCard() == 5) {
+            me.setOrigCard(4);
+        }
+        //Makes all villagers respond to a 13
+        if (me.getOrigCard() == 14 || me.getOrigCard()==15) {
+            me.setOrigCard(13);
+        }
         me.setCard(me.getOrigCard());
         System.out.println(me.toString());
 
@@ -67,24 +79,37 @@ public class WerewolfClient extends Application {
 
 
         //MAKE A GUI HERE!!!
-        String tempString = in.readLine();
-        System.out.println(tempString);
-        while (Integer.parseInt(tempString) != me.getCard() && Integer.parseInt(tempString) != -1) {
-            System.out.println("Here2");
-            tempString = in.readLine();
+        while (Integer.parseInt(in.readLine().split(",")[0]) != me.getOrigCard()) {
+            System.out.println("someone's turn received");
         }
-        System.out.println("Here3");
-        if (Integer.parseInt(tempString) > 5) {
-            System.out.println("Here4");
-            wwgc.takeTurnGui(Integer.parseInt(tempString));
-            System.out.println(tempString + " That's me! (" + me.getName() + ")");
-            out.println(tempString + " That's me! (" + me.getName() + ")");
+        switch (me.getOrigCard()){
+            case 0: //Doppelganger
+                break;
+            case 1: //Werewolf
+                wwgc.takeTurnGui(in.readLine(),me);
+                break;
+            case 3: //Minion
+                break;
+            case 4: //Mason
+                break;
+            case 6: //Seer
+                break;
+            case 7: //Robber
+                break;
+            case 8: //Troublemaker
+                break;
+            case 9: //Drunk
+                break;
+            case 10: //Insomniac
+                break;
+            case 11: //Hunter
+                break;
+            case 12: //Tanner
+                break;
+            case 13: //Villager
+                break;
         }
-        Thread.sleep(3000);
-        System.out.println("done");
-        out.println("next");
-        in.readLine();
-        //System.out.println("test");
+               // wwgc.takeTurnGui(me.getOrigCard()) ;
         System.exit(1);
     }
 }
