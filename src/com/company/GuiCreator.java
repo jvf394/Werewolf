@@ -43,7 +43,7 @@ public class GuiCreator {
             numberOfPlayers = Integer.parseInt(numberOfPlayersField.getText());
             if (isFirst.equals("1")) {
                 if ((playerName != null) && (!playerName.equals(""))) {
-                    if ((numberOfPlayers > 0) && (numberOfPlayers < 10)) {
+                    if ((numberOfPlayers > 1) && (numberOfPlayers < 11)) {
                         name = playerName + "," + numberOfPlayers;
                     }
                 }
@@ -210,7 +210,7 @@ public class GuiCreator {
         showCardStage.showAndWait();
     }
 
-    public void takeTurn(int card) throws InterruptedException{
+    public void takeTurnGui(int card) throws InterruptedException{
         Stage takeTurnStage = new Stage();
         takeTurnStage.setAlwaysOnTop(true);
         GridPane grid = new GridPane();
@@ -220,6 +220,7 @@ public class GuiCreator {
         Button btn = new Button();
         switch (card){
             //seer
+
             case 6: break;
             //robber
             case 7: break;

@@ -37,7 +37,6 @@ public class WerewolfClient extends Application {
         //Opens a welcome page and shows waiting
         wwgc.waitingGui();
         //Sends username
-        
         out.println(wwgc.usernameGui(in.readLine()));
 
         //Sends character selection
@@ -64,7 +63,7 @@ public class WerewolfClient extends Application {
             tempString =in.readLine();
         }
         if (Integer.parseInt(tempString) >5) {
-            wwgc.takeTurn(Integer.parseInt(tempString));
+            wwgc.takeTurnGui(Integer.parseInt(tempString));
             System.out.println(tempString + " That's me! ("+me.getName()+")");
             out.println(tempString + " That's me! ("+me.getName()+")");
         }
