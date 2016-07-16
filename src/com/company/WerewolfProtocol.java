@@ -62,7 +62,7 @@ public class WerewolfProtocol {
 
     public void showCard() throws IOException {
         String turn;
-        for (int i = 3; i < totalPlayers + 3; i++) {
+        for (int i = 0; i < totalPlayers + 3; i++) {
             turn = Integer.toString(players[i].getTurn());
             if ((!turn.equals("0")) && !turn.equals("1") && !turn.equals("2")) {
                 Socket skt = players[i].getConnection();
@@ -80,7 +80,7 @@ public class WerewolfProtocol {
         boolean runSecondWolf = true;
         boolean runSecondMason = true;
 
-        for (int i = 0; i < numberOfPlayers; i++) {
+        for (int i = 0; i < numberOfPlayers+3; i++) {
             for (Player player : playOrder) {
                 if (!isCenterCard(player) && player.getOrigCard() == i) {
                     switch (i) {

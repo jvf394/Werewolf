@@ -53,7 +53,7 @@ public class WerewolfServer implements KeyListener {
             wwp.beginGame();
 
             System.out.println("WE DID IT");
-            System.out.println(in.readLine() + "checkpoint 2");
+            //System.out.println(in.readLine() + "checkpoint 2");
 
 
         } catch (IOException e) {
