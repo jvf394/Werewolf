@@ -20,12 +20,11 @@ public class WerewolfProtocol {
     public String playerList(String theInput, Socket socket, int playerNumber) {
         if (state == FIRSTPLAYER) {
             totalPlayers = Integer.parseInt(theInput.split(",")[1]);
-            theInput = theInput.substring(0, theInput.lastIndexOf(","));
             players = new Player[totalPlayers + 3];
             state = WAITING;
         }
 
-        players[numberOfPlayers + 3] = new Player(theInput, playerNumber, -1, -1, socket, numberOfPlayers + 3);
+        players[numberOfPlayers + 3] = new Player(theInput.substring(0, theInput.lastIndexOf(",")), playerNumber, -1, -1, socket, numberOfPlayers + 3);
         numberOfPlayers++;
 
         return Integer.toString(numberOfPlayers - 1);

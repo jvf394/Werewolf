@@ -227,7 +227,6 @@ public class GuiCreator {
         Text text = new Text();
         Scene showCardScene = new Scene(grid);
         takeTurnStage.setScene(showCardScene);
-        takeTurnStage.show();
         switch (card) {
             case 1: //Werewolf
                 feedBack.setText("0");
@@ -284,6 +283,7 @@ public class GuiCreator {
                 grid.add(cardView, 0, 1);
                 break;
         }
+        takeTurnStage.showAndWait();
         System.out.println(feedBack.getText());
         return feedBack.getText();
     }
