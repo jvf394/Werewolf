@@ -89,7 +89,8 @@ public class WerewolfProtocol {
             players[i].setCard(Integer.parseInt(deck.split(",")[i]));
             System.out.println(players[i].getName() + ": " + players[i].getCard());
         }
-        Arrays.sort(players);
+        playOrder=players;
+        Arrays.sort(playOrder);
     }
 
     public void showCard() throws IOException {
