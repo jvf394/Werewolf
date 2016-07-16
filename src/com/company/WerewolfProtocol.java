@@ -85,27 +85,34 @@ public class WerewolfProtocol {
                 if (!isCenterCard(player) && player.getOrigCard() == i) {
                     switch (i) {
                         case 1:
+                            System.out.println("werewolf turn");
                             PlayerActions.wereWolf(player, playOrder, this);
                             runSecondWolf = false;
                             break;
                         case 2:
+                            System.out.println("2 turn");
                             if (runSecondWolf) {
                                 PlayerActions.wereWolf(player, playOrder, this);
                             }
                             break;
                         case 3:
+                            System.out.println("3 turn");
                             PlayerActions.minion(player, playOrder, this);
                             break;
                         case 4:
+                            System.out.println("4 turn");
                             PlayerActions.mason(player, playOrder, this);
                             break;
                         case 6:
+                            System.out.println("6 turn");
                             PlayerActions.seer(player, playOrder, this);
                             break;
                         case 7:
+                            System.out.println("7 turn");
                             PlayerActions.robber(player, playOrder, this);
                             break;
                         case 8:
+                            System.out.println("8 turn");
                             PlayerActions.troubleMaker(player, playOrder, this);
                             break;
                     }
