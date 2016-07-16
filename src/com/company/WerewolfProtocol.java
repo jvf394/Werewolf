@@ -100,7 +100,7 @@ public class WerewolfProtocol {
             if ((!turn.equals("0")) && !turn.equals("1") && !turn.equals("2")) {
                 Socket skt = players[i].getConnection();
                 PrintWriter out = new PrintWriter(skt.getOutputStream(), true);
-                out.println(players[i].getName() + " " + players[i].getCard());
+                out.println(players[i].getCard());
             }
         }
 
