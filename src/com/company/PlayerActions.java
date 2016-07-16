@@ -20,22 +20,22 @@ public class PlayerActions {
                 System.out.println("you are not a lone wolf");
                 isSecondWolf = true;
                 wwp.tellEveryone("1",player.getName()+","+p.getName());
-                try {
-                    BufferedReader in = new BufferedReader(new InputStreamReader(player.getConnection().getInputStream()));
-                    int lookingfor = Integer.parseInt(in.readLine());
-                    for (Player returnPerson : playOrder) {
-                        if (returnPerson.getTurn() == lookingfor) {
-                            returnPerson.getCard();
-                        }
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         }
         if (isSecondWolf == false){
             wwp.tellEveryone("1","none");
+            try {
+                BufferedReader in = new BufferedReader(new InputStreamReader(player.getConnection().getInputStream()));
+                int lookingfor = Integer.parseInt(in.readLine());
+                for (Player returnPerson : playOrder) {
+                    if (returnPerson.getTurn() == lookingfor) {
+                        wwp.tellEveryone(""+returnPerson.getCard());
+                    }
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
