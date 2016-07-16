@@ -49,13 +49,12 @@ public class WerewolfClient extends Application {
 
 
         //Sends username and number of players (host) to server
-        out.println(me.getName());
+        out.println(gameInfo[0] + "," + gameInfo[1]);
 
         //Host sends character selection
         if (me.getNum() == 1) {
             in.readLine();
-            System.out.println(gameInfo[0] + "," + gameInfo[1]);
-            out.println(gameInfo[0] + "," + gameInfo[1]);
+            out.println(wwgc.characterSelectionGui());
         }
 
         //Shows players their original card
