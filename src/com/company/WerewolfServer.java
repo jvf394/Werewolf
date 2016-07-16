@@ -48,9 +48,8 @@ public class WerewolfServer {
             //Deals cards to players
             wwp.dealCards(deck);
             wwp.showCard(); //sends players their card and name
+            wwp.beginGame();
 
-            while(wwp.beginGame()!=9){
-            }
             System.out.println("WE DID IT");
             System.out.println(in.readLine() + "checkpoint 2");
 
