@@ -203,15 +203,17 @@ public class GuiCreator {
         Image cardImg = new Image(card + ".png", 100, 548, true, true);
         ImageView cardView = new ImageView(cardImg);
         grid.add(cardView, 0, 1);
-        PauseTransition delay = new PauseTransition(Duration.seconds(15));
+        PauseTransition delay = new PauseTransition(Duration.seconds(5));
         delay.setOnFinished(event -> showCardStage.close());
         delay.play();
         showCardStage.showAndWait();
     }
 
     public String takeTurnGui(String info, Player me) throws InterruptedException {
+        System.out.println(info);
         int card = Integer.parseInt((info.split(":")[0]));
         String modifier = info.split(":")[1];
+        System.out.println(modifier);
         Text feedBack = new Text("");
         Stage takeTurnStage = new Stage();
         takeTurnStage.setAlwaysOnTop(true);
@@ -252,7 +254,7 @@ public class GuiCreator {
                         grid.add(mainTxt, 0, 0);
                     }
                 }
-                return feedBack.getText();
+                break;
             //seer
             case 6:
                 grid.add(cardView, 0, 1);
@@ -277,7 +279,8 @@ public class GuiCreator {
         Scene showCardScene = new Scene(grid);
         takeTurnStage.setScene(showCardScene);
         takeTurnStage.showAndWait();
-        return null;
+        System.out.println(feedBack.getText());
+        return feedBack.getText();
     }
 
     public void updateCardGui() {

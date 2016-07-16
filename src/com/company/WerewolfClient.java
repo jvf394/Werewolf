@@ -82,6 +82,7 @@ public class WerewolfClient extends Application {
         while (Integer.parseInt(in.readLine().split(":")[0]) != me.getOrigCard()) {
             System.out.println("someone's turn received");
         }
+        System.out.println("lets a go");
         switch (me.getOrigCard()){
             case 0: //Doppelganger
                 break;
