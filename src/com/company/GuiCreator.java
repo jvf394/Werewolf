@@ -225,8 +225,12 @@ public class GuiCreator {
         ImageView cardView = new ImageView(cardImg);
         Text mainTxt = new Text(me.getName() + ", ");
         Text text = new Text();
+        Scene showCardScene = new Scene(grid);
+        takeTurnStage.setScene(showCardScene);
+        takeTurnStage.show();
         switch (card) {
             case 1: //Werewolf
+                feedBack.setText("0");
                 if (modifier.equals("none")) {
                     mainTxt.setText(mainTxt.getText() + "you are alone, choose a middle card to view");
                     grid.add(mainTxt, 0, 0, 3, 1);
@@ -238,12 +242,15 @@ public class GuiCreator {
                     grid.add(right, 2, 1);
                     left.setOnAction(event -> {
                         feedBack.setText("0");
+                        takeTurnStage.close();
                     });
                     middle.setOnAction(event -> {
                         feedBack.setText("1");
+                        takeTurnStage.close();
                     });
                     right.setOnAction(event -> {
                         feedBack.setText("2");
+                        takeTurnStage.close();
                     });
                 } else {
                     if (me.getName().equals(modifier.split(",")[0])) {
@@ -277,8 +284,6 @@ public class GuiCreator {
                 grid.add(cardView, 0, 1);
                 break;
         }
-        Scene showCardScene = new Scene(grid);
-        takeTurnStage.setScene(showCardScene);
         takeTurnStage.showAndWait();
         System.out.println(feedBack.getText());
         return feedBack.getText();
