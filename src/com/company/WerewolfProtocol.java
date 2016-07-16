@@ -50,7 +50,7 @@ public class WerewolfProtocol {
             state = WAITING;
         }
 
-        players[numberOfPlayers + 3] = new Player(theInput, -1, -1, socket, numberOfPlayers + 3);
+        players[numberOfPlayers + 3] = new Player(theInput, -1, -1, -1, socket, numberOfPlayers + 3);
         numberOfPlayers++;
 
         return Integer.toString(numberOfPlayers - 1);
@@ -76,9 +76,9 @@ public class WerewolfProtocol {
     }
 
     public void dealCards(String deck) {
-        players[0] = new Player("Center-One", -1, -1, null, 0);
-        players[1] = new Player("Center-Two", -1, -1, null, 1);
-        players[2] = new Player("Center-Three", -1, -1, null, 2);
+        players[0] = new Player("Center-One", -1, -1, -1, null, 0);
+        players[1] = new Player("Center-Two", -1, -1, -1, null, 1);
+        players[2] = new Player("Center-Three", -1, -1, -1, null, 2);
         Deck = deck;
         for (int i = 0; i < totalPlayers + 3; i++) {
             players[i].setCard(Integer.parseInt(deck.split(",")[i]));
@@ -121,11 +121,11 @@ public class WerewolfProtocol {
                         System.out.println("Player #" + playOrder[i].getTurn() + ": " + playOrder[i].getName() + " is doppelganger");
                         doppelgangerPlayer = i;
                         doppelganger = true;
-                    } else if (card == 1||card ==2) {
+                    } else if (card == 1 || card == 2) {
                         System.out.println("Player #" + playOrder[i].getTurn() + ": " + playOrder[i].getName() + " is werewolf");
                     } else if (card == 3) {
                         System.out.println("Player #" + playOrder[i].getTurn() + ": " + playOrder[i].getName() + " is minion");
-                    } else if (card == 4||card ==5) {
+                    } else if (card == 4 || card == 5) {
                         System.out.println("Player #" + playOrder[i].getTurn() + ": " + playOrder[i].getName() + " is mason");
                     } else if (card == SEER) {
                         System.out.println("Player #" + playOrder[i].getTurn() + ": " + playOrder[i].getName() + " is seer");
