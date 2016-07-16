@@ -33,10 +33,11 @@ public class WerewolfClient extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //Opens a welcome page and shows waiting
-
-        //Sends username
         GuiCreator wwgc = new GuiCreator();
+        //Opens a welcome page and shows waiting
+        wwgc.waitingGui();
+        //Sends username
+        
         out.println(wwgc.usernameGui(in.readLine()));
 
         //Sends character selection

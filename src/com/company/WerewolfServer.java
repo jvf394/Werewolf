@@ -29,6 +29,7 @@ public class WerewolfServer {
 
 
             //Accepts host and stores username, #players
+            System.out.println("Waiting For Players");
             acceptMainPlayer();
             System.out.println("finished accepting first player");
 

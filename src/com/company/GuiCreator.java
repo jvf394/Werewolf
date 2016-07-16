@@ -67,6 +67,28 @@ public class GuiCreator {
         return name;
     }
 
+    public static void waitingGui() {
+        Stage waitingStage = new Stage();
+        waitingStage.setAlwaysOnTop(true);
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER_LEFT);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25, 25, 25, 25));
+        Text waitingTxt = new Text("waiting...");
+        Button submitBtn = new Button("Ok");
+        submitBtn.setOnAction(event -> {
+
+            waitingStage.close();
+        });
+        grid.add(waitingTxt, 0, 0);
+        waitingStage.setTitle("Client");
+        grid.add(submitBtn, 0, 2);
+        Scene usernameScene = new Scene(grid);
+        waitingStage.setScene(usernameScene);
+        waitingStage.showAndWait();
+    }
+
     private static String deckStr;
 
     public static String characterSelectionGui() {
