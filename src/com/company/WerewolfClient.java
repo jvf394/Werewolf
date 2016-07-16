@@ -36,9 +36,10 @@ public class WerewolfClient extends Application {
 
         GuiCreator wwgc = new GuiCreator();
         int num = Integer.parseInt(in.readLine()); //Player Number
+        String[] gameInfo = wwgc.usernameGui(num);
 
         Player me = new Player(
-                wwgc.usernameGui(num), //Username
+                gameInfo[0], //Username
                 num, //Player Number
                 -1, //Card
                 -1, //Original Card
@@ -53,7 +54,7 @@ public class WerewolfClient extends Application {
         //Host sends character selection
         if (me.getNum() == 1) {
             in.readLine();
-            out.println(wwgc.characterSelectionGui());
+            out.println(gameInfo[0] + "," + gameInfo[1]);
         }
 
         //Shows players their original card

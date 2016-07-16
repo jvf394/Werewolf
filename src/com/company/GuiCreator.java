@@ -23,9 +23,9 @@ import java.util.EventListener;
 public class GuiCreator {
 
     private static String playerName, name = "";
-    private static int numberOfPlayers;
+    private static int numberOfPlayers =0;
 
-    public static String usernameGui(int turn) {
+    public static String[] usernameGui(int turn) {
         Stage usernameStage = new Stage();
         usernameStage.setAlwaysOnTop(true);
         GridPane grid = new GridPane();
@@ -44,7 +44,7 @@ public class GuiCreator {
             if (turn ==1) {
                 if ((playerName != null) && (!playerName.equals(""))) {
                     if ((numberOfPlayers > 1) && (numberOfPlayers < 11)) {
-                        name = playerName + "," + numberOfPlayers;
+                        name = playerName;
                     }
                 }
             } else if ((playerName != null) && (!playerName.equals(""))) {
@@ -64,7 +64,7 @@ public class GuiCreator {
         Scene usernameScene = new Scene(grid);
         usernameStage.setScene(usernameScene);
         usernameStage.showAndWait();
-        return name;
+        return new String[]{name, String.valueOf(numberOfPlayers)};
     }
 
     public static void waitingGui() {
