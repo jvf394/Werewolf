@@ -79,7 +79,7 @@ public class WerewolfClient extends Application {
 
 
         //MAKE A GUI HERE!!!
-        while (Integer.parseInt(in.readLine().split(",")[0]) != me.getOrigCard()) {
+        while (Integer.parseInt(in.readLine().split(":")[0]) != me.getOrigCard()) {
             System.out.println("someone's turn received");
         }
         switch (me.getOrigCard()){
