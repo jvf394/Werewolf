@@ -32,31 +32,27 @@ public class WerewolfClient extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+
+        GuiCreator wwgc = new GuiCreator();
+        int num = Integer.parseInt(in.readLine()); //Player Number
+
         Player me = new Player(
-                "", //Username
-                Integer.parseInt(in.readLine()), //Player Number
+                wwgc.usernameGui(num), //Username
+                num, //Player Number
                 -1, //Card
                 -1, //Original Card
                 null, //Socket
                 -1 //Turn
         );
 
-        GuiCreator wwgc = new GuiCreator();
-        //Opens a welcome page and shows waiting
-        //wwgc.waitingGui();
 
         //Sends username and number of players (host) to server
-        me.setName(wwgc.usernameGui(me.getNum()));
         out.println(me.getName());
 
-        //Receives Player number
-        //me.setNum(Integer.parseInt(in.readLine()));
-
         //Host sends character selection
-        if (me.getNum()==1){
-            in.readLine();
-        }
         if (me.getNum() == 1) {
+            in.readLine();
             out.println(wwgc.characterSelectionGui());
         }
 
@@ -70,8 +66,7 @@ public class WerewolfClient extends Application {
         System.out.println("me.Name: " + me.getName());
 
 
-
-        wwgc.showCardGui(me.getCard(),me.getName());
+        wwgc.showCardGui(me.getCard(), me.getName());
 
 
         //MAKE A GUI HERE!!!
