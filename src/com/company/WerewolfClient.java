@@ -75,7 +75,7 @@ public class WerewolfClient extends Application {
         System.out.println(me.toString());
 
 
-        wwgc.showCardGui(me.getCard(), me.getName());
+        wwgc.showCardGui(me.getOrigCard(), me.getName());
 
 
         //MAKE A GUI HERE!!!
