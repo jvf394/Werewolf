@@ -284,7 +284,6 @@ public class GuiCreator {
                 grid.add(cardView, 0, 1);
                 break;
         }
-        takeTurnStage.showAndWait();
         System.out.println(feedBack.getText());
         return feedBack.getText();
     }
