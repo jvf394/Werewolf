@@ -36,7 +36,7 @@ public class GuiCreator {
         Text usernameTxt = new Text("Username:");
         TextField usernameField = new TextField("Username");
         Text numberOfPlayersTxt = new Text("Number of Players:");
-        TextField numberOfPlayersField = new TextField("1");
+        TextField numberOfPlayersField = new TextField("2");
         Button submitBtn = new Button("Submit");
         submitBtn.setOnAction(event -> {
             playerName = usernameField.getText();
@@ -218,24 +218,32 @@ public class GuiCreator {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
         Button btn = new Button();
+        Image cardImg = new Image(card + ".png", 100, 548, true, true);
+        ImageView cardView = new ImageView(cardImg);
         switch (card){
             //seer
-
-            case 6: break;
+            case 6:
+                grid.add(cardView, 0, 1);
+                break;
             //robber
-            case 7: break;
+            case 7:
+                grid.add(cardView, 0, 1);
+                break;
             //troublemaker
-            case 8: break;
+            case 8:
+                grid.add(cardView, 0, 1);
+                break;
             //drunk
-            case 9: break;
+            case 9:
+                grid.add(cardView, 0, 1);
+                break;
             //insomniac
-            case 10: break;
+            case 10:
+                grid.add(cardView, 0, 1);
+                break;
         }
         Scene showCardScene = new Scene(grid);
         takeTurnStage.setScene(showCardScene);
-        Image cardImg = new Image(card + ".png", 100, 548, true, true);
-        ImageView cardView = new ImageView(cardImg);
-        grid.add(cardView, 0, 1);
         takeTurnStage.showAndWait();
     }
 

@@ -35,7 +35,7 @@ public class WerewolfClient extends Application {
     public void start(Stage primaryStage) throws Exception {
         GuiCreator wwgc = new GuiCreator();
         //Opens a welcome page and shows waiting
-        wwgc.waitingGui();
+        //wwgc.waitingGui();
         //Sends username
         out.println(wwgc.usernameGui(in.readLine()));
 
@@ -59,10 +59,14 @@ public class WerewolfClient extends Application {
 
         //MAKE A GUI HERE!!!
         tempString =in.readLine();
+        System.out.println("Here1");
         while (Integer.parseInt(tempString)!=me.getCard()&&Integer.parseInt(tempString)!=-1){
+            System.out.println("Here2");
             tempString =in.readLine();
         }
+        System.out.println("Here3");
         if (Integer.parseInt(tempString) >5) {
+            System.out.println("Here4");
             wwgc.takeTurnGui(Integer.parseInt(tempString));
             System.out.println(tempString + " That's me! ("+me.getName()+")");
             out.println(tempString + " That's me! ("+me.getName()+")");
