@@ -94,13 +94,13 @@ public class WerewolfProtocol {
     }
 
     public void showCard() throws IOException {
-        String c;
-        for (int i = 0; i < totalPlayers + 3; i++) {
-            c = Integer.toString(players[i].getTurn());
-            if ((!c.equals("0")) && !c.equals("1") && !c.equals("2")) {
+        String turn;
+        for (int i = 3; i < totalPlayers + 3; i++) {
+            turn = Integer.toString(players[i].getTurn());
+            if ((!turn.equals("0")) && !turn.equals("1") && !turn.equals("2")) {
                 Socket skt = players[i].getConnection();
                 PrintWriter out = new PrintWriter(skt.getOutputStream(), true);
-                out.println(players[i].getCard());
+                out.println(players[i].getName() + " " + players[i].getCard());
             }
         }
 
