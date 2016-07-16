@@ -51,10 +51,16 @@ public class Player implements Comparable<Player> {
         return origCard;
     }
 
-    public void setOrigCard(int origCard) {this.origCard = origCard;}
+    public void setOrigCard(int origCard) {
+        this.origCard = origCard;
+    }
 
     public Socket getConnection() {
         return connection;
+    }
+
+    public void setConnection(Socket connection) {
+        this.connection = connection;
     }
 
     public int getTurn() {
@@ -65,10 +71,6 @@ public class Player implements Comparable<Player> {
         this.turn = turn;
     }
 
-    public void setConnection(Socket connection) {
-        this.connection = connection;
-    }
-
     @Override
     public int compareTo(Player o) {
         return Integer.compare(card, o.getCard());
@@ -76,7 +78,15 @@ public class Player implements Comparable<Player> {
 
     @Override
     public String toString() {
-        return name + "";
+        return
+                "PLAYER INFORMATION\n" +
+                        "\tName: " + name + "\n" +
+                        "\tNumber: " + num + "\n" +
+                        "\tCard: " + card + "\n" +
+                        "\tOriginal Card: " + origCard + "\n" +
+                        "\tSocket: " + connection.getRemoteSocketAddress().toString() +
+                        "\tTurn" + turn;
+
     }
 
 }
