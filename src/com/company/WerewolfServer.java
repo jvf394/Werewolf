@@ -1,6 +1,8 @@
 package com.company;
 
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,7 +12,7 @@ import java.net.Socket;
 import java.util.Arrays;
 
 
-public class WerewolfServer {
+public class WerewolfServer implements KeyListener {
 
     final static int PORTNUMBER = 1234;
     private static int totalPlayers, card, turn;
@@ -87,5 +89,20 @@ public class WerewolfServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.exit(-1);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
