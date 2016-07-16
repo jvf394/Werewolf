@@ -49,21 +49,21 @@ public class WerewolfClient extends Application {
         }
 
         //Shows players their original card
-        String tempString =in.readLine(); //original card and name
+        String tempString = in.readLine(); //original card and name
         me.setOrigCard(Integer.parseInt(tempString.split(",")[0]));
         me.setName(tempString.split(",")[1]);
         me.setCard(me.getOrigCard());
-        System.out.println("Card and Name: " + me.getOrigCard() + me.getName());
+        System.out.println("Card and Name: " + me.getOrigCard() + " " + me.getName());
         System.out.println("me.Card: " + me.getCard());
         System.out.println("me.Name: " + me.getName());
 
 
-        wwgc.showCardGui(tempString);
+        wwgc.showCardGui(me.getCard(),me.getName());
 
 
         //MAKE A GUI HERE!!!
         tempString = in.readLine();
-        System.out.println("Here1");
+        System.out.println(tempString);
         while (Integer.parseInt(tempString) != me.getCard() && Integer.parseInt(tempString) != -1) {
             System.out.println("Here2");
             tempString = in.readLine();

@@ -44,6 +44,7 @@ public class WerewolfServer {
 
             //Receives shuffled deck
             deck = wwp.listenPlayer(3);
+
             //Deals cards to players
             wwp.dealCards(deck);
             wwp.sortPlayers();

@@ -188,7 +188,7 @@ public class GuiCreator {
         return deckStr;
     }
 
-    public void showCardGui(String cardAndName) throws InterruptedException {
+    public void showCardGui(int card,String name) throws InterruptedException {
         Stage showCardStage = new Stage();
         showCardStage.setAlwaysOnTop(true);
         GridPane grid = new GridPane();
@@ -197,8 +197,6 @@ public class GuiCreator {
         grid.setPadding(new Insets(25, 25, 25, 25));
         Scene showCardScene = new Scene(grid);
         showCardStage.setScene(showCardScene);
-        String card = cardAndName.split(",")[0];
-        String name = cardAndName.split(",")[1];
         Text titleTxt = new Text(name + " you start as:");
         grid.add(titleTxt, 0, 0);
         Image cardImg = new Image(card + ".png", 100, 548, true, true);
