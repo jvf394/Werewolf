@@ -142,7 +142,7 @@ public class WerewolfProtocol {
                 PrintWriter out = null;
                 try {
                     out = new PrintWriter(skt.getOutputStream(), true);
-                    out.println(msg + "," + mod);
+                    out.println(msg + ":" + mod);
                 } catch (IOException e) {
                     System.out.println("Something went wrong in the tell everyone method!");
                     e.printStackTrace();
