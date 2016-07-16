@@ -24,7 +24,7 @@ import java.util.EventListener;
 public class GuiCreator {
 
     private static String playerName, name = "";
-    private static int numberOfPlayers =0;
+    private static int numberOfPlayers = 0;
 
     public static String[] usernameGui(int turn) {
         Stage usernameStage = new Stage();
@@ -42,7 +42,7 @@ public class GuiCreator {
         submitBtn.setOnAction(event -> {
             playerName = usernameField.getText();
             numberOfPlayers = Integer.parseInt(numberOfPlayersField.getText());
-            if (turn ==1) {
+            if (turn == 1) {
                 if ((playerName != null) && (!playerName.equals(""))) {
                     if ((numberOfPlayers > 1) && (numberOfPlayers < 11)) {
                         name = playerName;
@@ -56,7 +56,7 @@ public class GuiCreator {
         grid.add(usernameTxt, 0, 0);
         grid.add(usernameField, 1, 0);
         usernameStage.setTitle("Client");
-        if (turn ==1) {
+        if (turn == 1) {
             usernameStage.setTitle("Host");
             grid.add(numberOfPlayersTxt, 0, 1);
             grid.add(numberOfPlayersField, 1, 1);
@@ -189,7 +189,7 @@ public class GuiCreator {
         return deckStr;
     }
 
-    public void showCardGui(int card,String name) throws InterruptedException {
+    public void showCardGui(int card, String name) throws InterruptedException {
         Stage showCardStage = new Stage();
         showCardStage.setAlwaysOnTop(true);
         GridPane grid = new GridPane();
@@ -209,10 +209,10 @@ public class GuiCreator {
         showCardStage.showAndWait();
     }
 
-    public String takeTurnGui(String info,Player me) throws InterruptedException{
+    public String takeTurnGui(String info, Player me) throws InterruptedException {
         int card = Integer.parseInt((info.split(",")[0]));
         String modifier = info.split(",")[1];
-        Text feedBack=new Text("");
+        Text feedBack = new Text("");
         Stage takeTurnStage = new Stage();
         takeTurnStage.setAlwaysOnTop(true);
         GridPane grid = new GridPane();
@@ -221,34 +221,36 @@ public class GuiCreator {
         grid.setPadding(new Insets(25, 25, 25, 25));
         Image cardImg = new Image(card + ".png", 50, 274, true, true);
         ImageView cardView = new ImageView(cardImg);
-        Text mainTxt = new Text(me.getName()+", ");
+        Text mainTxt = new Text(me.getName() + ", ");
         Text text = new Text();
-        switch (card){
+        switch (card) {
             case 1: //Werewolf
-                if (modifier.equals("none")){
-                    mainTxt.equals(mainTxt+"you are alone, choose a middle card to view");
-                    grid.add(mainTxt,0,0,3,1);
-                    Button left = new Button ("Left");
-                    Button middle = new Button ("Middle");
-                    Button right = new Button ("Right");
-                    grid.add(left,0,1);
-                    grid.add(middle,1,1);
-                    grid.add(right,2,1);
+                if (modifier.equals("none")) {
+                    mainTxt.setText(mainTxt + "you are alone, choose a middle card to view");
+                    grid.add(mainTxt, 0, 0, 3, 1);
+                    Button left = new Button("Left");
+                    Button middle = new Button("Middle");
+                    Button right = new Button("Right");
+                    grid.add(left, 0, 1);
+                    grid.add(middle, 1, 1);
+                    grid.add(right, 2, 1);
                     left.setOnAction(event -> {
-                        feedBack.equals("0");
+                        feedBack.setText("0");
                     });
                     middle.setOnAction(event -> {
-                        feedBack.equals("1");
+                        feedBack.setText("1");
                     });
                     right.setOnAction(event -> {
-                        feedBack.equals("2");
+                        feedBack.setText("2");
                     });
-                } else{
-                    if (me.getName().equals(modifier.split(",")[0])){
-                        text.equals(modifier.split(",")[1]);
-                    }else text.equals(modifier.split(",")[0]);
-                    mainTxt.equals(mainTxt+"the other werewolf is "+ text);
-                    grid.add(mainTxt,0,0);
+                } else {
+                    if (me.getName().equals(modifier.split(",")[0])) {
+                        text.setText(modifier.split(",")[1]);
+                    } else {
+                        text.setText(modifier.split(",")[0]);
+                        mainTxt.setText(mainTxt + "the other werewolf is " + text);
+                        grid.add(mainTxt, 0, 0);
+                    }
                 }
                 return feedBack.getText();
 
