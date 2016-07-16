@@ -47,7 +47,6 @@ public class WerewolfServer {
 
             //Deals cards to players
             wwp.dealCards(deck);
-            wwp.sortPlayers();
             wwp.showCard(); //sends players their card and name
 
             while(wwp.beginGame()!=9){
@@ -71,8 +70,7 @@ public class WerewolfServer {
             out = new PrintWriter(clientSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             out.println("1");
-            inputLine = in.readLine();
-            wwp.playerList(inputLine, clientSocket);
+            wwp.playerList(in.readLine(), clientSocket, 1);
             totalPlayers = wwp.getNumPlayers();
         } catch (IOException e) {
             e.printStackTrace();
@@ -86,8 +84,7 @@ public class WerewolfServer {
             out = new PrintWriter(clientSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             out.println(playerNumber);
-            inputLine = in.readLine();
-            wwp.playerList(inputLine, clientSocket);
+            wwp.playerList(in.readLine(), clientSocket, playerNumber);
         } catch (IOException e) {
             e.printStackTrace();
         }

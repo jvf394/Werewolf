@@ -4,8 +4,10 @@ import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Enumeration;
 
 public class WerewolfProtocol {
+    //Game State
     private static final int
             FIRSTPLAYER = 0,
             WAITING = 1,
@@ -17,6 +19,8 @@ public class WerewolfProtocol {
             INS = 7,
             END = 8,
             DONE = 9;
+
+    //Card Enumeration
     private static final int
             DOPPELGANGER = 0,
             SEER = 6,
@@ -24,6 +28,8 @@ public class WerewolfProtocol {
             TROUBLEMAKER = 8,
             DRUNK = 9,
             INSOMNIAC = 10;
+
+    //Game Contains?
     private static boolean
             doppelganger = false,
             seer = false,
@@ -31,6 +37,8 @@ public class WerewolfProtocol {
             troublemaker = false,
             drunk = false,
             insomniac = false;
+
+
     private static int
             doppelgangerPlayer = -1,
             seerPlayer = -1,
@@ -42,7 +50,7 @@ public class WerewolfProtocol {
     private Player[] players, playOrder;
     public String Deck;
 
-    public String playerList(String theInput, Socket socket) {
+    public String playerList(String theInput, Socket socket, int playerNumber) {
         if (state == FIRSTPLAYER) {
             totalPlayers = Integer.parseInt(theInput.split(",")[theInput.split(",").length - 1]);
             theInput = theInput.substring(0, theInput.lastIndexOf(","));
@@ -50,7 +58,7 @@ public class WerewolfProtocol {
             state = WAITING;
         }
 
-        players[numberOfPlayers + 3] = new Player(theInput, -1, -1, -1, socket, numberOfPlayers + 3);
+        players[numberOfPlayers + 3] = new Player(theInput, playerNumber, -1, -1, socket, numberOfPlayers + 3);
         numberOfPlayers++;
 
         return Integer.toString(numberOfPlayers - 1);
@@ -81,11 +89,7 @@ public class WerewolfProtocol {
             players[i].setCard(Integer.parseInt(deck.split(",")[i]));
             System.out.println(players[i].getName() + ": " + players[i].getCard());
         }
-    }
-
-    public void sortPlayers() {
-        playOrder = players;
-        Arrays.sort(playOrder);
+        Arrays.sort(players);
     }
 
     public void showCard() throws IOException {
@@ -95,7 +99,7 @@ public class WerewolfProtocol {
             if ((!c.equals("0")) && !c.equals("1") && !c.equals("2")) {
                 Socket skt = players[i].getConnection();
                 PrintWriter out = new PrintWriter(skt.getOutputStream(), true);
-                out.println(players[i].getCard() + "," + players[i].getName());
+                out.println(players[i].getCard());
             }
         }
 
