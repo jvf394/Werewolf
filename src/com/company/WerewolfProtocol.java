@@ -52,7 +52,7 @@ public class WerewolfProtocol {
 
     public String playerList(String theInput, Socket socket, int playerNumber) {
         if (state == FIRSTPLAYER) {
-            totalPlayers = Integer.parseInt(theInput.split(",")[theInput.split(",").length - 1]);
+            totalPlayers = Integer.parseInt(theInput.split(",")[1]);
             theInput = theInput.substring(0, theInput.lastIndexOf(","));
             players = new Player[totalPlayers + 3];
             state = WAITING;

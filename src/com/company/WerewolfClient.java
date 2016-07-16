@@ -54,7 +54,8 @@ public class WerewolfClient extends Application {
         //Host sends character selection
         if (me.getNum() == 1) {
             in.readLine();
-            out.println(gameInfo[1] + "," + gameInfo[0]);
+            System.out.println(gameInfo[0] + "," + gameInfo[1]);
+            out.println(gameInfo[0] + "," + gameInfo[1]);
         }
 
         //Shows players their original card
