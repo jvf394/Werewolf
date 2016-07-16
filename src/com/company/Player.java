@@ -10,6 +10,7 @@ public class Player implements Comparable<Player> {
     private String name;
     private int num;
     private int card;
+    private int origCard =-1;
     private Socket connection;
     private int turn;
 
@@ -36,6 +37,12 @@ public class Player implements Comparable<Player> {
     public void setCard(int card) {
         this.card = card;
     }
+
+    public int getOrigCard() {
+        return origCard;
+    }
+
+    public void setOrigCard(int origCard) {this.origCard = origCard;}
 
     public Socket getConnection() {
         return connection;

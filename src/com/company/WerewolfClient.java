@@ -39,16 +39,17 @@ public class WerewolfClient extends Application {
         //Sends username
         out.println(wwgc.usernameGui(in.readLine()));
 
-        //Sends character selection
+        //Sends character selection if player number is 1 (host)
         if (in.readLine().equals("1")) {
             out.println(wwgc.characterSelectionGui());
         }
 
         //Shows players their original card
-        String tempString = in.readLine();
+        String tempString = in.readLine(); //original card
         System.out.println("Card and Name: " + tempString);
         Player me = new Player("",-1,-1,null,-1);
         me.setCard(Integer.parseInt(tempString.split(",")[0]));
+        me.setOrigCard();Card(Integer.parseInt(tempString.split(",")[0]));
         System.out.println("me.Card: " + me.getCard());
         me.setName(tempString.split(",")[1]);
         System.out.println("me.Name: " + me.getName());
