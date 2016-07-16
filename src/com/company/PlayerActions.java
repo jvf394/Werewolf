@@ -16,7 +16,7 @@ public class PlayerActions {
 
         boolean isSecondWolf = false;
         for (Player p : playOrder) {
-            if (p.getOrigCard() == 2) {
+            if (p.getOrigCard() == 2 && !wwp.isCenterCard(p)) {
                 isSecondWolf = true;
                 wwp.tellEveryone("1",player.getName()+","+p.getName());
                 try {
