@@ -84,9 +84,8 @@ public class Player implements Comparable<Player> {
                         "\tNumber: " + num + "\n" +
                         "\tCard: " + card + "\n" +
                         "\tOriginal Card: " + origCard + "\n" +
-                        "\tSocket: " + connection.getRemoteSocketAddress().toString() +
+                        "\tSocket: " + ((connection == null) ? "null" : connection.getRemoteSocketAddress().toString()) +
                         "\tTurn" + turn;
-
     }
 
 }
