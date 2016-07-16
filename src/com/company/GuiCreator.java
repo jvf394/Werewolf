@@ -210,8 +210,8 @@ public class GuiCreator {
     }
 
     public String takeTurnGui(String info, Player me) throws InterruptedException {
-        int card = Integer.parseInt((info.split(",")[0]));
-        String modifier = info.split(",")[1];
+        int card = Integer.parseInt((info.split(":")[0]));
+        String modifier = info.split(":")[1];
         Text feedBack = new Text("");
         Stage takeTurnStage = new Stage();
         takeTurnStage.setAlwaysOnTop(true);
