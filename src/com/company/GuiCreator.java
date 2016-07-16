@@ -253,7 +253,6 @@ public class GuiCreator {
                     }
                 }
                 return feedBack.getText();
-
             //seer
             case 6:
                 grid.add(cardView, 0, 1);

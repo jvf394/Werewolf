@@ -87,6 +87,7 @@ public class WerewolfClient extends Application {
                 break;
             case 1: //Werewolf
                 wwgc.takeTurnGui(in.readLine(),me);
+                System.out.println("I made it through");
                 break;
             case 3: //Minion
                 break;
