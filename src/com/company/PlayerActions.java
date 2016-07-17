@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by joeyf on 7/16/2016.
@@ -49,7 +50,7 @@ public class PlayerActions {
                 werewolves.add(p.getName());
             }
         }
-        wwp.tellEveryone("3",werewolves.toArray().toString());
+        wwp.tellEveryone("3", Arrays.toString(werewolves.toArray()));
 
     }
 
