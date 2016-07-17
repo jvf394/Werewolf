@@ -68,14 +68,14 @@ public class WerewolfClient extends Application {
             me.setOrigCard(4);
         }
         //Makes all villagers respond to a 13
-        if (me.getOrigCard() == 14 || me.getOrigCard()==15) {
+        if (me.getOrigCard() == 14 || me.getOrigCard() == 15) {
             me.setOrigCard(13);
         }
         me.setCard(me.getOrigCard());
         System.out.println(me.toString());
 
 
-        wwgc.showCardGui(me.getOrigCard(), me.getName()+", you start as:");
+        wwgc.showCardGui(me.getOrigCard(), me.getName() + ", you start as:");
 
 
         //MAKE A GUI HERE!!!
@@ -83,18 +83,21 @@ public class WerewolfClient extends Application {
             System.out.println("someone's turn received");
         }
         System.out.println("lets a go");
-        switch (me.getOrigCard()){
+        switch (me.getOrigCard()) {
             case 0: //Doppelganger
                 System.out.println("my turn");
                 break;
             case 1: //Werewolf
+                String werewolfIn = new String(in.readLine());
                 System.out.println("my turn");
-                out.println(wwgc.takeTurnGui(in.readLine(),me));
-                wwgc.showCardGui(Integer.parseInt(in.readLine().split(":")[0]),"That middle card is:");
+                out.println(wwgc.takeTurnGui(werewolfIn, me));
+                if (werewolfIn.contains("none")) {
+                    wwgc.showCardGui(Integer.parseInt(in.readLine().split(":")[0]), "That middle card is:");
+                }
                 break;
             case 3: //Minion
                 System.out.println("my turn");
-                wwgc.takeTurnGui(in.readLine(),me);
+                wwgc.takeTurnGui(in.readLine(), me);
                 break;
             case 4: //Mason
                 System.out.println("my turn");
@@ -124,7 +127,7 @@ public class WerewolfClient extends Application {
                 System.out.println("my turn");
                 break;
         }
-               // wwgc.takeTurnGui(me.getOrigCard()) ;
+        // wwgc.takeTurnGui(me.getOrigCard()) ;
         System.exit(1);
     }
 }
