@@ -75,7 +75,7 @@ public class WerewolfClient extends Application {
         System.out.println(me.toString());
 
 
-        wwgc.showCardGui(me.getOrigCard(), me.getName());
+        wwgc.showCardGui(me.getOrigCard(), me.getName()+", you start as:");
 
 
         //MAKE A GUI HERE!!!
@@ -89,7 +89,7 @@ public class WerewolfClient extends Application {
             case 1: //Werewolf
                 out.println(wwgc.takeTurnGui(in.readLine(),me));
                 System.out.println("I made it through");
-                System.out.println(in.readLine());
+                wwgc.showCardGui(Integer.parseInt(in.readLine().split(":")[0]),"That middle card is:");
                 break;
             case 3: //Minion
                 break;

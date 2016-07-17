@@ -198,7 +198,7 @@ public class GuiCreator {
         grid.setPadding(new Insets(25, 25, 25, 25));
         Scene showCardScene = new Scene(grid);
         showCardStage.setScene(showCardScene);
-        Text titleTxt = new Text(name + " you start as:");
+        Text titleTxt = new Text(name);
         grid.add(titleTxt, 0, 0);
         Image cardImg = new Image(card + ".png", 100, 548, true, true);
         ImageView cardView = new ImageView(cardImg);
@@ -254,6 +254,7 @@ public class GuiCreator {
                 } else {
                     if (me.getName().equals(modifier.split(",")[0])) {
                         text.setText(modifier.split(",")[1]);
+                        mainTxt.setText(mainTxt.getText() + "the other werewolf is " + text.getText());
                         grid.add(mainTxt, 0, 0);
                     } else {
                         text.setText(modifier.split(",")[0]);
