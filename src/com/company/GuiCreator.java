@@ -263,6 +263,11 @@ public class GuiCreator {
                     }
                 }
                 break;
+            case 3: //Minion
+                text.setText(modifier);
+                mainTxt.setText("the werewolves are: " + text.getText());
+                grid.add(mainTxt, 0, 0);
+                break;
             //seer
             case 6:
                 grid.add(cardView, 0, 1);

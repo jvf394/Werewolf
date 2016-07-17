@@ -85,31 +85,43 @@ public class WerewolfClient extends Application {
         System.out.println("lets a go");
         switch (me.getOrigCard()){
             case 0: //Doppelganger
+                System.out.println("my turn");
                 break;
             case 1: //Werewolf
+                System.out.println("my turn");
                 out.println(wwgc.takeTurnGui(in.readLine(),me));
-                System.out.println("I made it through");
                 wwgc.showCardGui(Integer.parseInt(in.readLine().split(":")[0]),"That middle card is:");
                 break;
             case 3: //Minion
+                System.out.println("my turn");
+                wwgc.takeTurnGui(in.readLine(),me);
                 break;
             case 4: //Mason
+                System.out.println("my turn");
                 break;
             case 6: //Seer
+                System.out.println("my turn");
                 break;
             case 7: //Robber
+                System.out.println("my turn");
                 break;
             case 8: //Troublemaker
+                System.out.println("my turn");
                 break;
             case 9: //Drunk
+                System.out.println("my turn");
                 break;
             case 10: //Insomniac
+                System.out.println("my turn");
                 break;
             case 11: //Hunter
+                System.out.println("my turn");
                 break;
             case 12: //Tanner
+                System.out.println("my turn");
                 break;
             case 13: //Villager
+                System.out.println("my turn");
                 break;
         }
                // wwgc.takeTurnGui(me.getOrigCard()) ;
