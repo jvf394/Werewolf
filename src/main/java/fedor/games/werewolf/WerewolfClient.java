@@ -10,8 +10,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class WerewolfClient extends Application {
-    private static Socket wwSocket;
-    private static PrintWriter out;
+	private static PrintWriter out;
     private static BufferedReader in;
 
 
@@ -20,7 +19,7 @@ public class WerewolfClient extends Application {
 //        String hostName = "45.55.65.225";
         int portNumber = 1234;
 
-        wwSocket = new Socket(hostName, portNumber);
+		Socket wwSocket = new Socket(hostName, portNumber);
         out = new PrintWriter(wwSocket.getOutputStream(), true);
         in = new BufferedReader(
                 new InputStreamReader(wwSocket.getInputStream()));
@@ -36,7 +35,7 @@ public class WerewolfClient extends Application {
 
         GuiCreator wwgc = new GuiCreator();
         int num = Integer.parseInt(in.readLine()); //Player Number
-        String[] gameInfo = wwgc.usernameGui(num);
+        String[] gameInfo = GuiCreator.usernameGui(num);
 
         Player me = new Player(
                 gameInfo[0], //Username
@@ -54,7 +53,7 @@ public class WerewolfClient extends Application {
         //Host sends character selection
         if (me.getNum() == 1) {
             in.readLine();
-            out.println(wwgc.characterSelectionGui());
+            out.println(GuiCreator.characterSelectionGui());
         }
 
         //Shows players their original card
@@ -88,7 +87,7 @@ public class WerewolfClient extends Application {
                 System.out.println("my turn");
                 break;
             case 1: //Werewolf
-                String werewolfIn = new String(in.readLine());
+                String werewolfIn = in.readLine();
                 System.out.println("my turn");
                 out.println(wwgc.takeTurnGui(werewolfIn, me));
                 if (werewolfIn.contains("none")) {

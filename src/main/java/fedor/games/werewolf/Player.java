@@ -2,10 +2,8 @@ package fedor.games.werewolf;
 
 import java.net.Socket;
 
-/**
- * Created by Joey on 11/27/2015.
- */
-public class Player implements Comparable<Player> {
+@SuppressWarnings("unused")
+class Player implements Comparable<Player> {
 
     private String name;
     private int num;
@@ -14,7 +12,7 @@ public class Player implements Comparable<Player> {
     private Socket connection;
     private int turn;
 
-    public Player(String name, int num, int card, int origCard, Socket connection, int turn) {
+    Player(String name, int num, int card, int origCard, Socket connection, int turn) {
         this.name = name;
         this.num = num;
         this.card = card;
@@ -23,7 +21,7 @@ public class Player implements Comparable<Player> {
         this.turn = turn;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
@@ -31,7 +29,7 @@ public class Player implements Comparable<Player> {
         this.name = name;
     }
 
-    public int getNum() {
+    int getNum() {
         return num;
     }
 
@@ -39,23 +37,23 @@ public class Player implements Comparable<Player> {
         this.num = num;
     }
 
-    public int getCard() {
+    int getCard() {
         return card;
     }
 
-    public void setCard(int card) {
+    void setCard(int card) {
         this.card = card;
     }
 
-    public int getOrigCard() {
+    int getOrigCard() {
         return origCard;
     }
 
-    public void setOrigCard(int origCard) {
+    void setOrigCard(int origCard) {
         this.origCard = origCard;
     }
 
-    public Socket getConnection() {
+    Socket getConnection() {
         return connection;
     }
 
@@ -63,7 +61,7 @@ public class Player implements Comparable<Player> {
         this.connection = connection;
     }
 
-    public int getTurn() {
+    int getTurn() {
         return turn;
     }
 

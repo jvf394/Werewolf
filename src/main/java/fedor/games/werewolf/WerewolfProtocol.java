@@ -7,18 +7,19 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Arrays;
 
-public class WerewolfProtocol {
+class WerewolfProtocol {
     //Game State
     private static final int
-            FIRSTPLAYER = 0,
+			FIRST_PLAYER = 0,
             WAITING = 1;
 
-    public String Deck;
-    private int state = FIRSTPLAYER, card, numberOfPlayers = 0, totalPlayers;
+    private int state = FIRST_PLAYER;
+	private int numberOfPlayers = 0;
+	private int totalPlayers;
     private Player[] players, playOrder;
 
-    public String playerList(String theInput, Socket socket, int playerNumber) {
-        if (state == FIRSTPLAYER) {
+    void playerList(String theInput, Socket socket, int playerNumber) {
+        if (state == FIRST_PLAYER) {
             totalPlayers = Integer.parseInt(theInput.split(",")[1]);
             players = new Player[totalPlayers + 3];
             state = WAITING;
@@ -27,30 +28,29 @@ public class WerewolfProtocol {
         players[numberOfPlayers + 3] = new Player(theInput.substring(0, theInput.lastIndexOf(",")), playerNumber, -1, -1, socket, numberOfPlayers + 3);
         numberOfPlayers++;
 
-        return Integer.toString(numberOfPlayers - 1);
+//        return Integer.toString(numberOfPlayers - 1);
     }
 
-    public int getNumPlayers() {
+    int getNumPlayers() {
         return totalPlayers;
     }
 
-    public void characterSelect() throws IOException {
+    void characterSelect() throws IOException {
         Socket skt = players[3].getConnection();
         PrintWriter out = new PrintWriter(skt.getOutputStream(), true);
         out.println();
     }
 
-    public String listenPlayer(int playerNum) throws IOException {
+    String listenPlayer(int playerNum) throws IOException {
         Socket clientSocket = players[playerNum].getConnection();
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         return in.readLine();
     }
 
-    public void dealCards(String deck) {
+    void dealCards(String deck) {
         players[0] = new Player("Center-One", -1, -1, -1, null, 0);
         players[1] = new Player("Center-Two", -1, -1, -1, null, 1);
         players[2] = new Player("Center-Three", -1, -1, -1, null, 2);
-        Deck = deck;
         for (int i = 0; i < totalPlayers + 3; i++) {
             players[i].setCard(Integer.parseInt(deck.split(",")[i]));
             players[i].setOrigCard(players[i].getCard());
@@ -60,7 +60,7 @@ public class WerewolfProtocol {
         Arrays.sort(playOrder);
     }
 
-    public void showCard() throws IOException {
+    void showCard() throws IOException {
         String turn;
         for (int i = 0; i < totalPlayers + 3; i++) {
             turn = Integer.toString(players[i].getTurn());
@@ -73,10 +73,10 @@ public class WerewolfProtocol {
 
     }
 
-    public void beginGame() throws InterruptedException, IOException {
+    void beginGame() {
 
         boolean runSecondWolf = true;
-        boolean runSecondMason = true;
+//        boolean runSecondMason = true; // TODO
 
         for (int i = 0; i < numberOfPlayers+3; i++) {
             for (Player player : playOrder) {
@@ -103,15 +103,15 @@ public class WerewolfProtocol {
                             break;
                         case 6:
                             System.out.println("6 turn");
-                            PlayerActions.seer(player, playOrder, this);
+//                            PlayerActions.seer(player, playOrder, this); //TODO
                             break;
                         case 7:
                             System.out.println("7 turn");
-                            PlayerActions.robber(player, playOrder, this);
+//                            PlayerActions.robber(player, playOrder, this); //TODO
                             break;
                         case 8:
                             System.out.println("8 turn");
-                            PlayerActions.troubleMaker(player, playOrder, this);
+//                            PlayerActions.troubleMaker(player, playOrder, this); //TODO
                             break;
                     }
                 }
@@ -120,23 +120,23 @@ public class WerewolfProtocol {
 
     }
 
-    public boolean isCenterCard(Player possibleCenter) {
+    boolean isCenterCard(Player possibleCenter) {
         return (possibleCenter.getTurn() == 0 ||
                 possibleCenter.getTurn() == 1 ||
                 possibleCenter.getTurn() == 2);
     }
 
-    public void tellEveryone(String msg) {
+    void tellEveryone(String msg) {
         tellEveryone(msg, "null");
     }
 
-    public void tellEveryone(String msg, String mod) {
+    void tellEveryone(String msg, String mod) {
         String c;
         for (int i = 0; i < totalPlayers + 3; i++) {
             c = Integer.toString(players[i].getTurn());
             if ((!c.equals("0")) && !c.equals("1") && !c.equals("2")) {
                 Socket skt = players[i].getConnection();
-                PrintWriter out = null;
+                PrintWriter out;
                 try {
                     out = new PrintWriter(skt.getOutputStream(), true);
                     out.println(msg + ":" + mod);

@@ -6,12 +6,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * Created by joeyf on 7/16/2016.
- */
-public class PlayerActions {
+class PlayerActions {
 
-    public static void wereWolf(Player player, Player[] playOrder, WerewolfProtocol wwp){
+    static void wereWolf(Player player, Player[] playOrder, WerewolfProtocol wwp){
 
         wwp.tellEveryone("1");
 
@@ -23,7 +20,7 @@ public class PlayerActions {
                 wwp.tellEveryone("1",player.getName()+","+p.getName());
             }
         }
-        if (isSecondWolf == false){
+        if (!isSecondWolf){
             wwp.tellEveryone("1","none");
             try {
                 BufferedReader in = new BufferedReader(new InputStreamReader(player.getConnection().getInputStream()));
@@ -40,11 +37,12 @@ public class PlayerActions {
         }
     }
 
-    public static void minion(Player player, Player[] playOrder, WerewolfProtocol wwp){
+    @SuppressWarnings("unused")
+	static void minion(Player player, Player[] playOrder, WerewolfProtocol wwp){
 
         wwp.tellEveryone("3");
 
-        ArrayList werewolves = new ArrayList();
+        ArrayList<String> werewolves = new ArrayList<>();
         for (Player p : playOrder){
             if(p.getOrigCard() == 1 || p.getOrigCard() == 2){
                 werewolves.add(p.getName());
@@ -54,7 +52,7 @@ public class PlayerActions {
 
     }
 
-    public static void mason(Player player, Player[] playOrder, WerewolfProtocol wwp) {
+    static void mason(Player player, Player[] playOrder, WerewolfProtocol wwp) {
 
         wwp.tellEveryone("4");
 
@@ -65,21 +63,18 @@ public class PlayerActions {
                 wwp.tellEveryone("4",player+","+p);
             }
         }
-        if (isSecondMason == false){
+        if (!isSecondMason){
             wwp.tellEveryone("4","none");
         }
     }
 
+//TODO
+//    static void seer(Player player, Player[] playOrder, WerewolfProtocol werewolfProtocol) {
+//    }
 
-    public static void seer(Player player, Player[] playOrder, WerewolfProtocol werewolfProtocol) {
+//    static void robber(Player player, Player[] playOrder, WerewolfProtocol werewolfProtocol) {
+//    }
 
-
-
-    }
-
-    public static void robber(Player player, Player[] playOrder, WerewolfProtocol werewolfProtocol) {
-    }
-
-    public static void troubleMaker(Player player, Player[] playOrder, WerewolfProtocol werewolfProtocol) {
-    }
+//    static void troubleMaker(Player player, Player[] playOrder, WerewolfProtocol werewolfProtocol) {
+//    }
 }

@@ -11,21 +11,20 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 
-public class WerewolfServer implements KeyListener {
+class WerewolfServer implements KeyListener {
 
-    final static int PORTNUMBER = 1234;
-    private static int totalPlayers, card, turn;
+    private final static int PORT_NUMBER = 1234;
+    private static int totalPlayers;
     private static ServerSocket serverSocket;
     private static PrintWriter out;
     private static BufferedReader in;
     private static WerewolfProtocol wwp;
-    private static String inputLine, deck;
 
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
         try {
-            serverSocket = new ServerSocket(PORTNUMBER);
+            serverSocket = new ServerSocket(PORT_NUMBER);
             wwp = new WerewolfProtocol();
 
 
@@ -44,7 +43,7 @@ public class WerewolfServer implements KeyListener {
             wwp.characterSelect();
 
             //Receives shuffled deck
-            deck = wwp.listenPlayer(3);
+			String deck = wwp.listenPlayer(3);
 
             //Deals cards to players
             wwp.dealCards(deck);
@@ -57,14 +56,12 @@ public class WerewolfServer implements KeyListener {
 
         } catch (IOException e) {
             System.out.println("Exception caught when trying to listen on port "
-                    + PORTNUMBER + " or listening for a connection");
+                    + PORT_NUMBER + " or listening for a connection");
             System.out.println(e.getMessage());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 
-    public static void acceptMainPlayer() throws IOException {
+    private static void acceptMainPlayer() {
         try {
             Socket clientSocket = serverSocket.accept();
             out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -77,7 +74,7 @@ public class WerewolfServer implements KeyListener {
         }
     }
 
-    public static void acceptPlayers(int playerNumber) throws IOException {
+    private static void acceptPlayers(int playerNumber) {
         try {
             Socket clientSocket = serverSocket.accept();
             System.out.println("player accepted");

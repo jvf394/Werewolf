@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class GuiCreator {
+class GuiCreator {
 
     private static String playerName, name = "";
     private static int numberOfPlayers = 0;
@@ -66,27 +66,24 @@ public class GuiCreator {
         return new String[]{name, String.valueOf(numberOfPlayers)};
     }
 
-    public static void waitingGui() {
-        Stage waitingStage = new Stage();
-        waitingStage.setAlwaysOnTop(true);
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER_LEFT);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
-        Text waitingTxt = new Text("waiting...");
-        Button submitBtn = new Button("Ok");
-        submitBtn.setOnAction(event -> {
-
-            waitingStage.close();
-        });
-        grid.add(waitingTxt, 0, 0);
-        waitingStage.setTitle("Client");
-        grid.add(submitBtn, 0, 2);
-        Scene usernameScene = new Scene(grid);
-        waitingStage.setScene(usernameScene);
-        waitingStage.showAndWait();
-    }
+//    public static void waitingGui() {
+//        Stage waitingStage = new Stage();
+//        waitingStage.setAlwaysOnTop(true);
+//        GridPane grid = new GridPane();
+//        grid.setAlignment(Pos.CENTER_LEFT);
+//        grid.setHgap(10);
+//        grid.setVgap(10);
+//        grid.setPadding(new Insets(25, 25, 25, 25));
+//        Text waitingTxt = new Text("waiting...");
+//        Button submitBtn = new Button("Ok");
+//        submitBtn.setOnAction(event -> waitingStage.close());
+//        grid.add(waitingTxt, 0, 0);
+//        waitingStage.setTitle("Client");
+//        grid.add(submitBtn, 0, 2);
+//        Scene usernameScene = new Scene(grid);
+//        waitingStage.setScene(usernameScene);
+//        waitingStage.showAndWait();
+//    }
 
     private static String deckStr;
 
@@ -101,9 +98,9 @@ public class GuiCreator {
         grid.setPadding(new Insets(25, 25, 25, 25));
         grid.minWidth(200);
         String[] characterNames = {"Doppelganger", "Werewolf", "Werewolf", "Minion", "Mason", "Mason", "Seer", "Robber", "Troublemaker", "Drunk", "Insomniac", "Hunter", "Tanner", "Villager", "Villager", "Villager"};
-        ArrayList<Button> acceptBtns = new ArrayList();
-        ArrayList<Button> rejectBtns = new ArrayList();
-        ArrayList<Text> status = new ArrayList();
+        ArrayList<Button> acceptBtns = new ArrayList<>();
+        ArrayList<Button> rejectBtns = new ArrayList<>();
+        ArrayList<Text> status = new ArrayList<>();
 
         final int[] numPlayers = {0};
         Text question = new Text("Which of these will be playing?");
@@ -187,7 +184,7 @@ public class GuiCreator {
         return deckStr;
     }
 
-    public void showCardGui(int card, String name) throws InterruptedException {
+    void showCardGui(int card, String name) {
         Stage showCardStage = new Stage();
         showCardStage.setAlwaysOnTop(true);
         GridPane grid = new GridPane();
@@ -207,7 +204,7 @@ public class GuiCreator {
         showCardStage.showAndWait();
     }
 
-    public String takeTurnGui(String info, Player me) throws InterruptedException {
+    public String takeTurnGui(String info, Player me) {
         System.out.println(info);
         int card = Integer.parseInt((info.split(":")[0]));
         String modifier = info.split(":")[1];
@@ -292,7 +289,7 @@ public class GuiCreator {
         return feedBack.getText();
     }
 
-    public void updateCardGui() {
-
-    }
+//    public void updateCardGui() { //TODO
+//
+//    }
 }
