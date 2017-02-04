@@ -35,12 +35,22 @@ hs_err_pid*
 # Gradle:
 .idea/gradle.xml
 .idea/libraries
+.gradle
+build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
 
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
 
 ## File-based project format:
 *.iws
+*.iml
+*.ipr
 
 ## Plugin-specific files:
 
@@ -58,3 +68,4 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+!/gradle/wrapper/gradle-wrapper.jar
