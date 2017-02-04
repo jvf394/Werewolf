@@ -50,7 +50,7 @@ public class WerewolfServer implements KeyListener {
             //Deals cards to players
             wwp.dealCards(deck);
             wwp.showCard(); //sends players their card and name
-            wwp.beginGame();
+            wwp.beginGame(); //begins game
 
             System.out.println("WE DID IT");
             //System.out.println(in.readLine() + "checkpoint 2");
