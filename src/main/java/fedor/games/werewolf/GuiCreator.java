@@ -11,10 +11,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,19 +27,17 @@ class GuiCreator {
     private static String playerName, name = "";
     private static int numberOfPlayers = 0;
 
+
     public static String[] usernameGui(int turn) {
         Stage usernameStage = new Stage();
         usernameStage.setAlwaysOnTop(true);
         GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER_LEFT);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
         Text usernameTxt = new Text("Username:");
         TextField usernameField = new TextField("Username");
         Text numberOfPlayersTxt = new Text("Number of Players:");
         TextField numberOfPlayersField = new TextField("2");
         Button submitBtn = new Button("Submit");
+        submitBtn.getStyleClass().add("button");
         submitBtn.setOnAction(event -> {
             playerName = usernameField.getText();
             numberOfPlayers = Integer.parseInt(numberOfPlayersField.getText());
@@ -61,29 +62,12 @@ class GuiCreator {
         }
         grid.add(submitBtn, 0, 2);
         Scene usernameScene = new Scene(grid);
+        usernameScene.getStylesheets().add("style.css");
         usernameStage.setScene(usernameScene);
+        usernameStage.setFullScreen(true);
         usernameStage.showAndWait();
         return new String[]{name, String.valueOf(numberOfPlayers)};
     }
-
-//    public static void waitingGui() {
-//        Stage waitingStage = new Stage();
-//        waitingStage.setAlwaysOnTop(true);
-//        GridPane grid = new GridPane();
-//        grid.setAlignment(Pos.CENTER_LEFT);
-//        grid.setHgap(10);
-//        grid.setVgap(10);
-//        grid.setPadding(new Insets(25, 25, 25, 25));
-//        Text waitingTxt = new Text("waiting...");
-//        Button submitBtn = new Button("Ok");
-//        submitBtn.setOnAction(event -> waitingStage.close());
-//        grid.add(waitingTxt, 0, 0);
-//        waitingStage.setTitle("Client");
-//        grid.add(submitBtn, 0, 2);
-//        Scene usernameScene = new Scene(grid);
-//        waitingStage.setScene(usernameScene);
-//        waitingStage.showAndWait();
-//    }
 
     private static String deckStr;
 
@@ -91,12 +75,6 @@ class GuiCreator {
         Stage characterSelectionStage = new Stage();
         characterSelectionStage.setAlwaysOnTop(true);
         GridPane grid = new GridPane();
-        //grid.setStyle("-fx-background-image: url('0.png');-fx-background-position: center center;-fx-background-repeat: stretch");
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
-        grid.minWidth(200);
         String[] characterNames = {"Doppelganger", "Werewolf", "Werewolf", "Minion", "Mason", "Mason", "Seer", "Robber", "Troublemaker", "Drunk", "Insomniac", "Hunter", "Tanner", "Villager", "Villager", "Villager"};
         ArrayList<Button> acceptBtns = new ArrayList<>();
         ArrayList<Button> rejectBtns = new ArrayList<>();
@@ -106,9 +84,9 @@ class GuiCreator {
         Text question = new Text("Which of these will be playing?");
         Text players = new Text("Number of Players: " + numPlayers[0]);
         Button continueBtn = new Button("Continue");
-        grid.add(question, 0, 0, 2, 1);
-        grid.add(players, 2, 0, 2, 1);
-        grid.add(continueBtn, 3, 0);
+        grid.add(question, 0, 0, 3, 1);
+        grid.add(players, 3, 0, 2, 1);
+        grid.add(continueBtn, 0, 4);
         continueBtn.setOnAction(event1 -> {
             if (numberOfPlayers == numPlayers[0]) {
                 if (status.get(4).getText().equals(status.get(5).getText())) {
@@ -136,17 +114,14 @@ class GuiCreator {
                 HBox hContainer = new HBox();
                 status.add(statusTxt);
                 Button yesBtn = new Button("Yes");
-                yesBtn.minWidth(2000);
                 yesBtn.setOnAction(event -> {
                     System.out.println(characterNames[acceptBtns.indexOf(yesBtn)]);
                     if (status.get(acceptBtns.indexOf(yesBtn)).getText().equalsIgnoreCase("no")) numPlayers[0]++;
                     players.setText("Number of Players: " + numPlayers[0]);
                     vContainer.setStyle("-fx-background-color: #00CC00; -fx-border-color: #000000;");
                     status.get(acceptBtns.indexOf(yesBtn)).setText("yes");
-                    //characterSelectionStage.showAndWait();
                 });
                 Button noBtn = new Button("No");
-                noBtn.minWidth(2000);
                 noBtn.setOnAction(event -> {
                     System.out.println(characterNames[rejectBtns.indexOf(noBtn)]);
                     if (status.get(rejectBtns.indexOf(noBtn)).getText().equalsIgnoreCase("yes")) numPlayers[0]--;
@@ -179,6 +154,7 @@ class GuiCreator {
         status.get(2).setText("yes");
         status.get(3).setText("yes");
         Scene characterSelectionScene = new Scene(grid);
+        characterSelectionScene.getStylesheets().add("style.css");
         characterSelectionStage.setScene(characterSelectionScene);
         characterSelectionStage.showAndWait();
         return deckStr;
@@ -188,12 +164,10 @@ class GuiCreator {
         Stage showCardStage = new Stage();
         showCardStage.setAlwaysOnTop(true);
         GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
         Scene showCardScene = new Scene(grid);
+        showCardScene.getStylesheets().add("style.css");
         showCardStage.setScene(showCardScene);
-        Text titleTxt = new Text(name);
+        Text titleTxt = new Text(name + ", you start as:");
         grid.add(titleTxt, 0, 0);
         Image cardImg = new Image(card + ".png", 100, 548, true, true);
         ImageView cardView = new ImageView(cardImg);
@@ -213,14 +187,12 @@ class GuiCreator {
         Stage takeTurnStage = new Stage();
         takeTurnStage.setAlwaysOnTop(true);
         GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
         Image cardImg = new Image(card + ".png", 50, 274, true, true);
         ImageView cardView = new ImageView(cardImg);
         Text mainTxt = new Text(me.getName() + ", ");
         Text text = new Text();
         Scene showCardScene = new Scene(grid);
+        showCardScene.getStylesheets().add("style.css");
         takeTurnStage.setScene(showCardScene);
         switch (card) {
             case 1: //Werewolf

@@ -1,0 +1,25 @@
+GridPane {
+    -fx-background-image: url("night.jpg");
+    -fx-background-size: cover;
+    -fx-alignment: top-left;
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+    -fx-padding: 25;
+}
+
+Text {
+    -fx-fill: gold;
+    -fx-font-size: 14pt;
+}
+
+Button {
+    -fx-background-color: #c79f00;
+}
+
+Button:hover {
+    -fx-background-color: gold;
+}
+
+TextField:hover {
+    -fx-background-color: #c79f00;
+}
