@@ -1,4 +1,4 @@
-package com.company;
+package fedor.games.werewolf;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -16,8 +16,8 @@ public class WerewolfClient extends Application {
 
 
     public static void main(String[] args) throws IOException {
-        //String hostName = "localhost";
-        String hostName = "45.55.65.225";
+        String hostName = "localhost";
+//        String hostName = "45.55.65.225";
         int portNumber = 1234;
 
         wwSocket = new Socket(hostName, portNumber);

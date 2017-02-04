@@ -1,4 +1,4 @@
-package com.company;
+package fedor.games.werewolf;
 
 
 import java.awt.event.KeyEvent;
@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Arrays;
 
 
 public class WerewolfServer implements KeyListener {

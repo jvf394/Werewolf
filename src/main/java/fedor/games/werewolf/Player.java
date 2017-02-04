@@ -1,4 +1,4 @@
-package com.company;
+package fedor.games.werewolf;
 
 import java.net.Socket;
 
