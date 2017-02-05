@@ -18,14 +18,14 @@ class WerewolfProtocol {
 	private int totalPlayers;
     private Player[] players, playOrder;
 
-    void playerList(String theInput, Socket socket, int playerNumber) {
+    void playerList(String theInput, Socket socket, int playerID) {
         if (state == FIRST_PLAYER) {
             totalPlayers = Integer.parseInt(theInput.split(",")[1]);
             players = new Player[totalPlayers + 3];
             state = WAITING;
         }
 
-        players[numberOfPlayers + 3] = new Player(theInput.substring(0, theInput.lastIndexOf(",")), playerNumber, -1, -1, socket, numberOfPlayers + 3);
+        players[numberOfPlayers + 3] = new Player("-1",playerID,theInput.substring(0, theInput.lastIndexOf(",")), -1, -1, socket, numberOfPlayers + 3);
         numberOfPlayers++;
 
 //        return Integer.toString(numberOfPlayers - 1);
@@ -48,9 +48,9 @@ class WerewolfProtocol {
     }
 
     void dealCards(String deck) {
-        players[0] = new Player("Center-One", -1, -1, -1, null, 0);
-        players[1] = new Player("Center-Two", -1, -1, -1, null, 1);
-        players[2] = new Player("Center-Three", -1, -1, -1, null, 2);
+        players[0] = new Player("",-1,"Center-One", -1, -1, null, 0);
+        players[1] = new Player("",-1,"Center-Two", -1, -1, null, 1);
+        players[2] = new Player("",-1,"Center-Three", -1, -1, null, 2);
         for (int i = 0; i < totalPlayers + 3; i++) {
             players[i].setCard(Integer.parseInt(deck.split(",")[i]));
             players[i].setOrigCard(players[i].getCard());

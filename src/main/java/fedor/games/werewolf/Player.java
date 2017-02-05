@@ -5,20 +5,38 @@ import java.net.Socket;
 @SuppressWarnings("unused")
 class Player implements Comparable<Player> {
 
+    private String sessionID;
+    private int playerID;
     private String name;
-    private int num;
     private int card;
     private int origCard;
     private Socket connection;
     private int turn;
 
-    Player(String name, int num, int card, int origCard, Socket connection, int turn) {
+    Player(String sessionID, int playerID, String name, int card, int origCard, Socket connection, int turn) {
+        this.sessionID = sessionID;
+        this.playerID = playerID;
         this.name = name;
-        this.num = num;
         this.card = card;
         this.origCard = origCard;
         this.connection = connection;
         this.turn = turn;
+    }
+
+    String getSessionID() {
+        return sessionID;
+    }
+
+    public void setSessionID(String sessionID) {
+        this.sessionID = sessionID;
+    }
+
+    int getPlayerID() {
+        return playerID;
+    }
+
+    public void setPlayerID(int playerID) {
+        this.playerID = playerID;
     }
 
     String getName() {
@@ -27,14 +45,6 @@ class Player implements Comparable<Player> {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
     }
 
     int getCard() {
@@ -78,8 +88,9 @@ class Player implements Comparable<Player> {
     public String toString() {
         return
                 "PLAYER INFORMATION\n" +
-                        "\tName: " + name + "\n" +
-                        "\tNumber: " + num + "\n" +
+                        "\tName: " + sessionID + "\n" +
+                        "\tName: " + playerID + "\n" +
+                        "\tNumber: " + name + "\n" +
                         "\tCard: " + card + "\n" +
                         "\tOriginal Card: " + origCard + "\n" +
                         "\tSocket: " + ((connection == null) ? "null" : connection.getRemoteSocketAddress().toString()) + "\n" +

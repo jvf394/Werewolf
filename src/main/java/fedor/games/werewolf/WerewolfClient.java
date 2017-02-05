@@ -34,13 +34,24 @@ public class WerewolfClient extends Application {
 
         //Initializes the GuiCreator
         GuiCreator wwgc = new GuiCreator();
-        int num = Integer.parseInt(in.readLine()); //Player Number
-        String[] gameInfo = wwgc.usernameGui(num);
+
+        //Request to host or join game
+        String[] tempString=wwgc.gameGui();
+        if (Integer.parseInt(tempString[0])==0) {
+            out.println("host,"+tempString[1]); //[out: host,<sessionName>]
+            if (in.readLine()=="ok")out.println(wwgc.characterSelectionGui()); //[out: Roles]
+        }
+
+        //waits for server to provide confirmation of connection and game ID
+        String sessionName = in.readLine(); //[in: game session name]
+        int playerID = Integer.parseInt(in.readLine()); //[in: Game player ID]
+        String[] gameInfo = wwgc.usernameGui(playerID); //Receives username
 
         //Initializes player data
         Player me = new Player(
+                sessionName, //Game Name
+                playerID, //Player ID
                 gameInfo[0], //Username
-                num, //Player Number
                 -1, //Card
                 -1, //Original Card
                 null, //Socket
@@ -52,9 +63,8 @@ public class WerewolfClient extends Application {
         out.println(gameInfo[0] + "," + gameInfo[1]);
 
         //Host sends character selection
-        if (me.getNum() == 1) {
+        if (me.getPlayerID() == 1) {
             in.readLine();
-            out.println(wwgc.characterSelectionGui());
         }
 
         //Shows players their original card

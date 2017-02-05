@@ -24,9 +24,39 @@ import java.util.Collections;
 
 class GuiCreator {
 
-    private static String playerName, name = "";
+    private static String playerName, name = "", host, sessionName;
     private static int numberOfPlayers = 0;
 
+
+    public static String[] gameGui() {
+        Stage gameStage = new Stage();
+        gameStage.setAlwaysOnTop(true);
+        GridPane grid = new GridPane();
+        Button hostBtn = new Button("Host");
+        TextField sessionNameField = new TextField("Game Name");
+        Button joinBtn = new Button("Join");
+        grid.add(hostBtn, 0, 0);
+        grid.add(sessionNameField, 1, 0);
+        grid.add(joinBtn, 0, 1);
+        hostBtn.setOnAction(event -> {
+            if (!sessionNameField.getText().equals("Game Name")) {
+                host = "0";
+                sessionName = sessionNameField.getText();
+            }
+        });
+        joinBtn.setOnAction(event -> {
+            if (!sessionNameField.getText().equals("Game Name")) {
+                host = "0";
+                sessionName = sessionNameField.getText();
+            }
+        });
+        Scene gameScene = new Scene(grid);
+        gameScene.getStylesheets().add("style.css");
+        gameStage.setScene(gameScene);
+        gameStage.setFullScreen(true);
+        gameStage.showAndWait();
+        return new String[]{host, sessionName};
+    }
 
     public static String[] usernameGui(int turn) {
         Stage usernameStage = new Stage();
@@ -37,7 +67,6 @@ class GuiCreator {
         Text numberOfPlayersTxt = new Text("Number of Players:");
         TextField numberOfPlayersField = new TextField("2");
         Button submitBtn = new Button("Submit");
-        submitBtn.getStyleClass().add("button");
         submitBtn.setOnAction(event -> {
             playerName = usernameField.getText();
             numberOfPlayers = Integer.parseInt(numberOfPlayersField.getText());
@@ -76,8 +105,7 @@ class GuiCreator {
         characterSelectionStage.setAlwaysOnTop(true);
         GridPane grid = new GridPane();
         String[] characterNames = {"Doppelganger", "Werewolf", "Werewolf", "Minion", "Mason", "Mason", "Seer", "Robber", "Troublemaker", "Drunk", "Insomniac", "Hunter", "Tanner", "Villager", "Villager", "Villager"};
-        ArrayList<Button> acceptBtns = new ArrayList<>();
-        ArrayList<Button> rejectBtns = new ArrayList<>();
+        ArrayList<Button> Btns = new ArrayList<>();
         ArrayList<Text> status = new ArrayList<>();
 
         final int[] numPlayers = {0};
@@ -98,7 +126,7 @@ class GuiCreator {
                     }
                     deckStr = deckStr.substring(0, deckStr.length() - 1);
                     String[] deck = deckStr.split(",");
-                    Collections.shuffle(Arrays.asList(deck));
+                    //Collections.shuffle(Arrays.asList(deck));
                     deckStr = Arrays.toString(deck);
                     deckStr = deckStr.substring(1, deckStr.length() - 1);
                     deckStr = deckStr.replace(" ", "");
@@ -113,35 +141,33 @@ class GuiCreator {
                 VBox vContainer = new VBox();
                 HBox hContainer = new HBox();
                 status.add(statusTxt);
-                Button yesBtn = new Button("Yes");
-                yesBtn.setOnAction(event -> {
-                    System.out.println(characterNames[acceptBtns.indexOf(yesBtn)]);
-                    if (status.get(acceptBtns.indexOf(yesBtn)).getText().equalsIgnoreCase("no")) numPlayers[0]++;
-                    players.setText("Number of Players: " + numPlayers[0]);
-                    vContainer.setStyle("-fx-background-color: #00CC00; -fx-border-color: #000000;");
-                    status.get(acceptBtns.indexOf(yesBtn)).setText("yes");
-                });
-                Button noBtn = new Button("No");
-                noBtn.setOnAction(event -> {
-                    System.out.println(characterNames[rejectBtns.indexOf(noBtn)]);
-                    if (status.get(rejectBtns.indexOf(noBtn)).getText().equalsIgnoreCase("yes")) numPlayers[0]--;
-                    players.setText("Number of Players: " + numPlayers[0]);
-                    vContainer.setStyle("-fx-background-color: #DD0000; -fx-border-color: #000000;");
-                    status.get(rejectBtns.indexOf(noBtn)).setText("no");
-                });
-                acceptBtns.add(yesBtn);
-                rejectBtns.add(noBtn);
-                Image cardImg = new Image(count + ".png", 75, 548, true, true);
+                Image cardImg = new Image(count + ".png", 100, 548, true, true);
                 ImageView imageView = new ImageView(cardImg);
+                Button cardBtn = new Button("",imageView);
+                cardBtn.setStyle("-fx-padding: 0%; -fx-background-color: rgba(0,0,0,0);");
+                cardBtn.setOnAction(event -> {
+                    System.out.println(characterNames[Btns.indexOf(cardBtn)]);
+                    System.out.println(status.get(Btns.indexOf(cardBtn)).getText());
+                    if (status.get(Btns.indexOf(cardBtn)).getText().equalsIgnoreCase("no")) {
+                        numPlayers[0]++;
+                        vContainer.setStyle("-fx-background-color: rgba(0,30,0,1); -fx-background-radius: 10px; -fx-border-color: rgba(255,255,255,.5); -fx-border-radius: 10px");
+                        status.get(Btns.indexOf(cardBtn)).setText("yes");
+                    }else{
+                        numPlayers[0]--;
+                        vContainer.setStyle("-fx-background-color: rgba(0,0,0,0.2); -fx-background-radius: 10px; -fx-border-color: rgba(0,0,0,.5); -fx-border-radius: 10px");
+                        status.get(Btns.indexOf(cardBtn)).setText("no");
+                    }
+                    if(numPlayers[0]>=0) players.setText("Number of Players: " + numPlayers[0]);
+                });
+                Btns.add(cardBtn);
                 vContainer.setPadding(new Insets(5, 5, 5, 5));
                 vContainer.minWidth(200);
-                vContainer.setStyle("-fx-background-color: #DD0000; -fx-border-color: #000000;");
+                vContainer.setStyle("-fx-background-color: rgba(0,0,0,0.2); -fx-background-radius: 10px; -fx-border-color: rgba(0,0,0,.5); -fx-border-radius: 10px");
                 if (count == 1 || count == 2 || count == 3)
-                    vContainer.setStyle("-fx-background-color: #00CC00; -fx-border-color: #000000;");
+                    vContainer.setStyle("-fx-background-color: rgba(0,30,0,1); -fx-background-radius: 10px; -fx-border-color: rgba(255,255,255,.5); -fx-border-radius: 10px");
                 hContainer.setSpacing(10);
                 hContainer.setPadding(new Insets(5, 10, 5, 10));
-                hContainer.getChildren().add(yesBtn);
-                hContainer.getChildren().add(noBtn);
+                hContainer.getChildren().add(cardBtn);
                 hContainer.setAlignment(Pos.CENTER);
                 vContainer.setAlignment(Pos.CENTER);
                 vContainer.getChildren().add(imageView);

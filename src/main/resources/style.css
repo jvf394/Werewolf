@@ -20,6 +20,19 @@ Button:hover {
     -fx-background-color: gold;
 }
 
-TextField:hover {
-    -fx-background-color: #c79f00;
+Image{
+    -fx-opacity: 100%;
+}
+
+ImageView{
+    -fx-opacity: 100%;
+}
+vContainer {
+    -fx-padding: 5;
+    -fx-min-width: 200;
+}
+hContainer {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+    -fx-padding: 10;
 }
