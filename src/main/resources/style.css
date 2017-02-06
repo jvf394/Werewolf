@@ -1,3 +1,6 @@
+Stage{
+
+}
 GridPane {
     -fx-background-image: url("night.jpg");
     -fx-background-size: cover;
@@ -10,6 +13,11 @@ GridPane {
 Text {
     -fx-fill: gold;
     -fx-font-size: 14pt;
+}
+.errorText{
+    -fx-fill: red;
+    -fx-font-size: 10pt;
+    -fx-font-style: italic;
 }
 
 Button {

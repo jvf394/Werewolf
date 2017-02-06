@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class GuiLauncher extends Application {
 
@@ -17,11 +18,11 @@ public class GuiLauncher extends Application {
 
         //Initializes the GuiCreator
         GuiCreator wwgc = new GuiCreator();
-        wwgc.gameGui();
-        //wwgc.usernameGui(1);
-        //wwgc.usernameGui(2);
-        //System.out.println(wwgc.characterSelectionGui());
-        //wwgc.showCardGui(1,"Username");
-        //wwgc.takeTurnGui("1:test", new Player("username",2,3,4, new Socket(),5));
+        System.out.println("Game Request:"+wwgc.gameGui().toString());
+        System.out.println("Character Selection:"+wwgc.characterSelectionGui());
+        System.out.println("View your Card:"+wwgc.showCardGui(1,1));
+        System.out.println("Take turn:"+wwgc.takeTurnGui("1:none"));
+        System.out.println("End Game:"+wwgc.showCardGui(9,3));
+        System.out.println("End Game:"+wwgc.showCardGui(1,2));
     }
 }

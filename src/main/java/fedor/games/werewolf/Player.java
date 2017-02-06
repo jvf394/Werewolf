@@ -5,46 +5,32 @@ import java.net.Socket;
 @SuppressWarnings("unused")
 class Player implements Comparable<Player> {
 
-    private String sessionID;
-    private int playerID;
-    private String name;
+    private String sessionName;
+    private String username;
     private int card;
-    private int origCard;
     private Socket connection;
-    private int turn;
 
-    Player(String sessionID, int playerID, String name, int card, int origCard, Socket connection, int turn) {
-        this.sessionID = sessionID;
-        this.playerID = playerID;
-        this.name = name;
+    Player(String sessionName, String username, int card, Socket connection) {
+        this.sessionName = sessionName;
+        this.username = username;
         this.card = card;
-        this.origCard = origCard;
         this.connection = connection;
-        this.turn = turn;
     }
 
-    String getSessionID() {
-        return sessionID;
+    String getSessionName() {
+        return sessionName;
     }
 
-    public void setSessionID(String sessionID) {
-        this.sessionID = sessionID;
+    public void setSessionName(String sessionName) {
+        this.sessionName = sessionName;
     }
 
-    int getPlayerID() {
-        return playerID;
+    String getUsername() {
+        return username;
     }
 
-    public void setPlayerID(int playerID) {
-        this.playerID = playerID;
-    }
-
-    String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     int getCard() {
@@ -55,28 +41,12 @@ class Player implements Comparable<Player> {
         this.card = card;
     }
 
-    int getOrigCard() {
-        return origCard;
-    }
-
-    void setOrigCard(int origCard) {
-        this.origCard = origCard;
-    }
-
     Socket getConnection() {
         return connection;
     }
 
     public void setConnection(Socket connection) {
         this.connection = connection;
-    }
-
-    int getTurn() {
-        return turn;
-    }
-
-    public void setTurn(int turn) {
-        this.turn = turn;
     }
 
     @Override
@@ -88,13 +58,10 @@ class Player implements Comparable<Player> {
     public String toString() {
         return
                 "PLAYER INFORMATION\n" +
-                        "\tName: " + sessionID + "\n" +
-                        "\tName: " + playerID + "\n" +
-                        "\tNumber: " + name + "\n" +
+                        "\tSessionName: " + sessionName + "\n" +
+                        "\tUsername: " + username + "\n" +
                         "\tCard: " + card + "\n" +
-                        "\tOriginal Card: " + origCard + "\n" +
-                        "\tSocket: " + ((connection == null) ? "null" : connection.getRemoteSocketAddress().toString()) + "\n" +
-                        "\tTurn: " + turn + "\n";
+                        "\tSocket: " + ((connection == null) ? "null" : connection.getRemoteSocketAddress().toString()) + "\n";
     }
 
 }
